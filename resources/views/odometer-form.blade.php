@@ -18,13 +18,23 @@
                                 {{-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
                             </div>
                             <div class="form-group mb-2>
-                            <label for="odometerFinish">Odometra finiša rādījums</label>
+                            <label for="odometerFinish">Odometra
+                                finiša rādījums</label>
                                 <input name="odometer_end" type="number" class="form-control" id="odometerFinish"
-                                    placeholder="Ievadiet finiša rādījumu" {{!isset($currentRun)? 'disabled' : ''}}>
+                                    placeholder="Ievadiet finiša rādījumu" {{ !isset($currentRun) ? 'disabled' : '' }}>
                             </div>
                             <input type="hidden" name="odometer_id"
                                 value="{{ isset($currentRun->id) ? $currentRun->id : '' }}">
                             @csrf
+                            @if ($errors->any())
+                                <div class="alert alert-danger mt-3">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <button type="submit" class="btn btn-primary mt-2">Saglabāt</button>
                         </form>
                     </div>

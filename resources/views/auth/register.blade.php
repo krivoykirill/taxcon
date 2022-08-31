@@ -12,6 +12,20 @@
                         @csrf
 
                         <div class="row mb-3">
+                            <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Phone (+371)') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="number" class="form-control @error('name') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
@@ -26,12 +40,40 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="surname" class="col-md-4 col-form-label text-md-end">{{ __('Surname') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
 
-                                @error('email')
+                                @error('surname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="ik" class="col-md-4 col-form-label text-md-end">{{ __('IK') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="ik" type="text" class="form-control @error('ik') is-invalid @enderror" name="ik" value="{{ old('ik') }}" required autocomplete="ik" autofocus>
+
+                                @error('ik')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="ik_number" class="col-md-4 col-form-label text-md-end">{{ __('IK Nr.') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="ik_number" type="number" class="form-control @error('ik_number') is-invalid @enderror" name="ik_number" value="{{ old('ik_number') }}" required autocomplete="ik_number" autofocus>
+
+                                @error('ik_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

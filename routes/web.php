@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/show-odometer-form', [App\Http\Controllers\HomeController::class, 'showOdometerForm'])->name('form-show');
 Route::post('submit-odometer-form', [App\Http\Controllers\HomeController::class, 'submitOdometerForm'])->name('form-submit');

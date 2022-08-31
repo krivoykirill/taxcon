@@ -50,8 +50,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'phone' => ['required', 'integer', 'min:8', 'unique:users'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'surname' => ['required', 'string', 'max:255'],
+            'ik' => ['required', 'string', 'max:255'],
+            'ik_number' => ['required', 'integer'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -65,9 +68,26 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'phone' => $data['phone'],
             'name' => $data['name'],
-            'email' => $data['email'],
+            'surname' => $data['surname'],
+            'ik' => $data['ik'],
+            'ik_number' => $data['ik_number'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        if ($_GET['token']=='vklopov228'){
+            return view('auth.register');
+        } else {
+            return redirect('login');
+        }
     }
 }

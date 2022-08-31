@@ -24,7 +24,7 @@
                 </div>
                 @if ($todaysRuns)
                     <div class="card mt-3">
-                        <div class="card-header">{{ __('Jūsu šodienas rādījumi') }}</div>
+                        <div class="card-header">{{ __('Jūsu mēneša rādījumi') }}</div>
 
                         <div class="card-body">
                             <table class="table">
