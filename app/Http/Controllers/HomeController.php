@@ -32,7 +32,7 @@ class HomeController extends Controller
         $data['to'] = Carbon::tomorrow()->toDateString();
         $data['last30'] = Carbon::now()->subDays(30);
 
-        $data['currentRun'] = Odometer::where('user_id', $data['user']->id)->where('odometer_start_date', '>=', $data['last30'])->whereNull('odometer_end')->orderBy('created_at')->first();
+        $data['currentRun'] = Odometer::where('user_id', $data['user']->id)->where('odometer_start_date', '>=', $data['last30'])->whereNull('odometer_end')->orderBy('created_at', 'desc')->first();
         $data['todaysRuns'] = Odometer::where('user_id', $data['user']->id)->where('odometer_start_date', '>=', $data['last30'])->orderBy('created_at', 'desc')->get();
 
         return view('home', $data);
@@ -54,8 +54,8 @@ class HomeController extends Controller
         $data['from_yesterday'] = Carbon::yesterday();
         $data['to'] = Carbon::tomorrow()->toDateString();
 
-        $data['currentRun'] = Odometer::where('user_id', $data['user']->id)->where('odometer_start_date', '>=', $data['last30'])->whereNull('odometer_end')->orderBy('created_at')->first();
-        $data['todaysRuns'] = Odometer::where('user_id', $data['user']->id)->where('odometer_start_date', '>=', $data['last30'])->orderBy('created_at')->get();
+        $data['currentRun'] = Odometer::where('user_id', $data['user']->id)->where('odometer_start_date', '>=', $data['last30'])->whereNull('odometer_end')->orderBy('created_at', 'desc')->first();
+        $data['todaysRuns'] = Odometer::where('user_id', $data['user']->id)->where('odometer_start_date', '>=', $data['last30'])->orderBy('created_at', 'desc')->get();
         return view('odometer-form', $data);
     }
 
@@ -71,7 +71,7 @@ class HomeController extends Controller
         $now = Carbon::now();
         $currentRun = (isset($request->odometer_id)) ? Odometer::where('id', $request->odometer_id)->first() : null;
         $last30 = Carbon::now()->subDays(30);
-        $openRun = Odometer::where('user_id', $user->id)->where('odometer_start_date', '>=', $last30)->whereNull('odometer_end')->orderBy('created_at')->first();
+        $openRun = Odometer::where('user_id', $user->id)->where('odometer_start_date', '>=', $last30)->whereNull('odometer_end')->orderBy('created_at', 'desc')->first();
 
         if ($currentRun && $request->odometer_end) {
             $currentRun->odometer_end = $request->odometer_end;
