@@ -42,7 +42,7 @@
                                             <th scope="row">{{$index+1}}</th>
                                             <td>{{$run->odometer_start}}</td>
                                             <td>{{$run->odometer_end}}</td>
-                                            <td>{{ $run->odometer_end - $run->odometer_start}}</td>
+                                            <td>{!! (($run->odometer_end - $run->odometer_start)>0)? $run->odometer_end - $run->odometer_start : '<span class="font-weight-bold text-danger">Atvērts darbs</span>'!!}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
