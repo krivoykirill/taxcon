@@ -33,7 +33,7 @@ class HomeController extends Controller
         $data['last30'] = Carbon::now()->subDays(30);
 
         $data['currentRun'] = Odometer::where('user_id', $data['user']->id)->where('odometer_start_date', '>=', $data['last30'])->whereNull('odometer_end')->orderBy('created_at')->first();
-        $data['todaysRuns'] = Odometer::where('user_id', $data['user']->id)->where('odometer_start_date', '>=', $data['last30'])->orderBy('created_at')->get();
+        $data['todaysRuns'] = Odometer::where('user_id', $data['user']->id)->where('odometer_start_date', '>=', $data['last30'])->orderBy('created_at', 'desc')->get();
 
         return view('home', $data);
     }
