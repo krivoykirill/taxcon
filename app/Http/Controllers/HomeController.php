@@ -64,10 +64,10 @@ class HomeController extends Controller
         $user = $request->user();
 
         $request->validate([
-            'odometer_start' => ['integer', new \App\Rules\StartNotLessThanLastEnd($user)],
+            'odometer_start' => ['integer', new \App\Rules\StartNotLessThanLastEnd($user), new \App\Rules\StartNotFarAwayFromLastEnd($user)],
             'odometer_end' => ['integer', new \App\Rules\EndNotLesstThanCurrentStart($request->odometer_id), new \App\Rules\StartEndLimits($request->odometer_id)],
         ]);
-        
+
         $now = Carbon::now();
         $currentRun = (isset($request->odometer_id)) ? Odometer::where('id', $request->odometer_id)->first() : null;
         $last30 = Carbon::now()->subDays(30);

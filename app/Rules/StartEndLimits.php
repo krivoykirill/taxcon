@@ -27,7 +27,7 @@ class StartEndLimits implements Rule
     public function passes($attribute, $value)
     {
         $odometer = Odometer::where('id', $this->odometer_id)->first();
-        if ($odometer && ($value - $odometer->odometer_start > 500)) {
+        if ($odometer && ($value - $odometer->odometer_start > 550)) {
             return false;
         } else {
             return true;
@@ -41,6 +41,6 @@ class StartEndLimits implements Rule
      */
     public function message()
     {
-        return 'Odometra starpība nevar būt vairāk nekā 500km';
+        return 'Odometra starpība nevar būt vairāk nekā 550km';
     }
 }
