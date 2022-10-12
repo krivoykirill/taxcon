@@ -20,7 +20,7 @@ class StartNotFarAwayFromLastEnd implements Rule
         $this->dailyLimitKm = 200;
 
         $this->odometer = Odometer::where('user_id', $this->user->id)->whereNotNull('odometer_end')->orderBy('id', 'desc')->first();
-        if ($this->odometer->odometer_end_date) {
+        if (isset($this->odometer->odometer_end_date)) {
             $lastEndDate = Carbon::parse($this->odometer->odometer_end_date);
             $nowDate = Carbon::now();
             $daysDiff = $nowDate->diffInDays($lastEndDate);
