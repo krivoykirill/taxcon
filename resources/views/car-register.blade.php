@@ -20,7 +20,7 @@
                                     <select name="driver_id" class="form-control">
                                         <option value="null" selected>Choose driver</option>
                                         @foreach ($allUsers as $user)
-                                            <option value="{{ $user->id }}">{{ $user->ik }}
+                                            <option value="{{ $user->id }}">{{ $user->id }} | {{ $user->ik }}
                                             </option>
                                         @endforeach
                                     </select>
