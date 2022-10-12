@@ -39,7 +39,7 @@ class StartNotFarAwayFromLastEnd implements Rule
     public function passes($attribute, $value)
     {
 
-        if (!$this->odometer->odometer_end_date) {
+        if (!isset($this->odometer->odometer_end_date)) {
             return true;
         }
         
