@@ -20,10 +20,12 @@ class StartNotFarAwayFromLastEnd implements Rule
         $this->dailyLimitKm = 200;
 
         $this->odometer = Odometer::where('user_id', $this->user->id)->whereNotNull('odometer_end')->orderBy('id', 'desc')->first();
-        $lastEndDate = Carbon::parse($this->odometer->odometer_end_date);
-        $nowDate = Carbon::now();
-        $daysDiff = $nowDate->diffInDays($lastEndDate);
-        $this->allowedOffworkLimit = ($daysDiff + 1) * $this->dailyLimitKm;
+        if ($this->odometer->odometer_end_date) {
+            $lastEndDate = Carbon::parse($this->odometer->odometer_end_date);
+            $nowDate = Carbon::now();
+            $daysDiff = $nowDate->diffInDays($lastEndDate);
+            $this->allowedOffworkLimit = ($daysDiff + 1) * $this->dailyLimitKm;
+        }
 
     }
 
@@ -36,6 +38,10 @@ class StartNotFarAwayFromLastEnd implements Rule
      */
     public function passes($attribute, $value)
     {
+
+        if (!$this->odometer->odometer_end_date) {
+            return true;
+        }
         
         if (!$this->odometer) {
             return true;
