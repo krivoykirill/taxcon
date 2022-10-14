@@ -71,7 +71,7 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Consumption (L/100km)') }}</label>
 
                                 <div class="col-md-6">
-                                    <input placeholder="6.7" step="0.1" id="consumption" type="number"
+                                    <input placeholder="6.7" step="0.01" id="consumption" type="number"
                                         class="form-control @error('consumption') is-invalid @enderror" name="consumption"
                                         value="{{ old('consumption') }}" required autocomplete="consumption" autofocus>
 
